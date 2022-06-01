@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador UserController
+ *
+ * @author Juan Pablo Toro, Juan Esteban Velasquez
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 @RestController
-//@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -25,6 +31,14 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * Endpoint login
+     * @param userDto userDto
+     * @return token User
+     * @throws Exception
+     */
+
 
     @PostMapping("/login")
     public User login(@RequestBody UserDto userDto) throws Exception {

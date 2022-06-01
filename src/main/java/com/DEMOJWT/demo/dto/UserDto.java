@@ -1,11 +1,26 @@
 package com.DEMOJWT.demo.dto;
 
+/**
+ * Dto User
+ *
+ * @author Juan Pablo Toro, Juan Esteban Velasquez
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 public class UserDto {
 
     private Long id;
     private String user;
     private String pwd;
-//    private String token;
+
+    /**
+     * constructor
+     *
+     * @param id   Long
+     * @param user String
+     * @param pwd  String
+     */
 
     public UserDto(Long id, String user, String pwd) {
         this.id = id;
@@ -15,6 +30,10 @@ public class UserDto {
 
     public UserDto() {
     }
+
+    /**
+     * metodos de acceso y obtencion.
+     */
 
     public Long getId() {
         return id;

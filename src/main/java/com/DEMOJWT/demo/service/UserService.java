@@ -5,7 +5,13 @@ import com.DEMOJWT.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+/**
+ * User service
+ *
+ * @author Juan Pablo Toro, Juan Esteban Velasquez
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 
 @Service
 public class UserService {
@@ -13,16 +19,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User loadById(Long id){
+    public User loadById(Long id) {
 
         return userRepository.findById(id).orElse(null);
     }
-
-//    cargar usuario
-//    public User loadUserbyUser(Long id) {
-//        User userName = userRepository.findById(id);
-//        return userName;
-//    }
-
-
 }

@@ -4,6 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Modelo User
+ *
+ * @author Juan Pablo Toro, Juan Esteban Velasquez
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
+
 @Entity
 public class User {
     @Id
@@ -13,6 +22,12 @@ public class User {
     private String pwd;
     private String token;
 
+    /**
+     * Constructor
+     * @param id   Long
+     * @param user String
+     * @param pwd  String
+     */
 
     public User(Long id, String user, String pwd) {
         this.id = id;
@@ -23,6 +38,11 @@ public class User {
     public User() {
 
     }
+
+    /**
+     * Metodos de acceso y obtencion
+     *
+     */
 
     public Long getId() {
         return id;
