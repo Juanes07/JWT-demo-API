@@ -33,7 +33,7 @@ public class UserController {
         existe.setToken(token);
         try {
             System.out.println("hola estoy dentro del try");
-            if (userDto.getId() == existe.getId()) {
+            if (userDto.getUser().equalsIgnoreCase(existe.getUser()) && userDto.getPwd().equalsIgnoreCase(existe.getPwd())) {
                 token = getJWTToken(existe.getUser());
                 System.out.println("hola entre al if" );
                 existe.setToken(token);
