@@ -1,8 +1,7 @@
-package com.DEMOJWT.demo.dto;
+package com.DEMOJWT.demo.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -12,7 +11,18 @@ public class User {
     private Long id;
     private String user;
     private String pwd;
-    private String token;
+//    private String token;
+
+
+    public User(Long id, String user, String pwd) {
+        this.id = id;
+        this.user = user;
+        this.pwd = pwd;
+    }
+
+    public User() {
+
+    }
 
     public Long getId() {
         return id;
@@ -38,11 +48,11 @@ public class User {
         this.pwd = pwd;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
+//    public String getToken() {
+//        return token;
+//    }
+//
+//    public void setToken(String token) {
+//        this.token = token;
+//    }
 }

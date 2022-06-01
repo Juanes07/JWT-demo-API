@@ -1,29 +1,44 @@
 package com.DEMOJWT.demo.controller;
 
-import com.DEMOJWT.demo.dto.User;
+import com.DEMOJWT.demo.Entity.User;
+import com.DEMOJWT.demo.dto.UserDto;
+import com.DEMOJWT.demo.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
-    @PostMapping("user")
-    public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+    @Autowired
+    private UserService userService;
 
-        String token = getJWTToken(username);
-        User user = new User();
-        user.setUser(username);
-        user.setToken(token);
-        return user;
+    @PostMapping("/login")
+    public User login(@RequestBody UserDto userDto) throws Exception {
+        User existe = userService.loadUserbyUser(userDto.getUser());
+        try {
+            if (userDto.getUser() == existe.getUser() && userDto.getPwd() == existe.getPwd()) {
+                String token = getJWTToken(existe.getUser());
+                return existe;
+            }
+        } catch (Exception e) {
+            throw new Exception("Credenciales Incorrectas");
+        }
+
+
+//        String token = getJWTToken(username);
+//        User user = new User();
+//        user.setUser(username);
+//        user.setToken(token);
+        return null;
 
     }
 
