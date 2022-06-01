@@ -2,6 +2,7 @@ package com.DEMOJWT.demo.controller;
 
 import com.DEMOJWT.demo.Entity.User;
 import com.DEMOJWT.demo.dto.UserDto;
+import com.DEMOJWT.demo.repository.UserRepository;
 import com.DEMOJWT.demo.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,35 +13,48 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @PostMapping("/login")
     public User login(@RequestBody UserDto userDto) throws Exception {
-        User existe = userService.loadUserbyUser(userDto.getUser());
+        User existe = userService.loadById(userDto.getId());
+        String token = "no tiene acceso";
+        existe.setToken(token);
         try {
-            if (userDto.getUser() == existe.getUser() && userDto.getPwd() == existe.getPwd()) {
-                String token = getJWTToken(existe.getUser());
-                return existe;
+            System.out.println("hola estoy dentro del try");
+            if (userDto.getId() == existe.getId()) {
+                token = getJWTToken(existe.getUser());
+                System.out.println("hola entre al if" );
+                existe.setToken(token);
             }
         } catch (Exception e) {
             throw new Exception("Credenciales Incorrectas");
         }
+        return existe;
 
-
-//        String token = getJWTToken(username);
+//        String token = getJWTToken(userDto.getUser());
 //        User user = new User();
-//        user.setUser(username);
+//        user.setUser(userDto.getUser());
 //        user.setToken(token);
-        return null;
+//        return userRepository.save(user);
 
+//        userDto.getUser() == existe.getUser() && userDto.getPwd() == existe.getPwd()
     }
+
+
+
+
 
     private String getJWTToken(String username) {
         String secretKey = "mySecretKey";

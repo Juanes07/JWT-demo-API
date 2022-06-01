@@ -11,7 +11,7 @@ public class User {
     private Long id;
     private String user;
     private String pwd;
-//    private String token;
+    private String token;
 
 
     public User(Long id, String user, String pwd) {
@@ -48,11 +48,11 @@ public class User {
         this.pwd = pwd;
     }
 
-//    public String getToken() {
-//        return token;
-//    }
-//
-//    public void setToken(String token) {
-//        this.token = token;
-//    }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
