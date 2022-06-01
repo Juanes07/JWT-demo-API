@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorldController {
 
     @GetMapping("/hello")
-    public String helloWorld(@RequestParam(value="name", defaultValue="World") String name) {
-        return "Hello "+name+"!!";
+    public String helloWorld() {
+        return "Hello World ";
     }
 }
